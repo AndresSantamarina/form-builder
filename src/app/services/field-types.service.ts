@@ -5,12 +5,20 @@ const TEXT_FIELD_DEFINITION = {
   type: 'text',
   label: 'Text Field',
   icon: 'text_fields',
+  defaultConfig: {
+    label: 'Text Field',
+    required: false,
+  },
 };
 
 const CHECKBOX_FIELD_DEFINITION = {
   type: 'checkbox',
   label: 'Checkbox',
   icon: 'check_box',
+  defaultConfig: {
+    label: 'Checkbox Field',
+    required: false,
+  },
 };
 
 @Injectable({
