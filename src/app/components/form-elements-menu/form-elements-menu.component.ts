@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FieldTypesService } from '../../services/field-types.service';
 import { FieldButtonComponent } from './field-button/field-button.component';
-import { DragDropModule } from '@angular/cdk/drag-drop';
+import { CdkDrag, DragDropModule } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-form-elements-menu',
@@ -16,6 +16,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
         cdkDropList
         cdkDropListSortingDisabled="true"
         [cdkDropListData]="'field-selector'"
+        [cdkDropListEnterPredicate]="noDropAllowed"
       >
         @for (type of fieldTypes; track type.type) {
         <app-field-button [field]="type" />
@@ -29,4 +30,8 @@ export class FormElementsMenuComponent {
   fieldTypesService = inject(FieldTypesService);
 
   fieldTypes = this.fieldTypesService.getAllFieldTypes();
+
+  noDropAllowed(item: CdkDrag<any>) {
+    return false;
+  }
 }
