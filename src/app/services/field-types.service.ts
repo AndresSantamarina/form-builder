@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { FieldTypeDefinition } from '../models/field';
 import { TextFieldComponent } from '../components/field-types/text-field/text-field.component';
 import { CheckboxFieldComponent } from '../components/field-types/checkbox-field/checkbox-field.component';
+import { SelectFieldComponent } from '../components/field-types/select-field/select-field.component';
 
 const TEXT_FIELD_DEFINITION: FieldTypeDefinition = {
   type: 'text',
@@ -55,6 +56,36 @@ const CHECKBOX_FIELD_DEFINITION: FieldTypeDefinition = {
     { type: 'checkbox', key: 'required', label: 'Required' },
   ],
   component: CheckboxFieldComponent,
+};
+
+const SELECT_FIELD_DEFINITION: FieldTypeDefinition = {
+  type: 'select',
+  label: 'Dropdown',
+  icon: 'arrow_drop_down_circle',
+  component: SelectFieldComponent,
+  defaultConfig: {
+    label: 'Select',
+    required: false,
+    options: [
+      {
+        value: 'option1',
+        label: 'Option 1',
+      },
+      {
+        value: 'option2',
+        label: 'Option 2',
+      },
+      {
+        value: 'option3',
+        label: 'Option 3',
+      },
+    ],
+  },
+  settingsConfig: [
+    { type: 'text', key: 'label', label: 'Label' },
+    { type: 'checkbox', key: 'required', label: 'Required' },
+    { type: 'dynamic-options', key: 'options', label: 'Dropdown Options' },
+  ],
 };
 
 @Injectable({

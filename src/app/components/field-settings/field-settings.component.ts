@@ -5,11 +5,19 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatCheckbox } from '@angular/material/checkbox';
-import {MatSelectModule} from '@angular/material/select'
+import { MatSelectModule } from '@angular/material/select';
+import { DynamicOptionsComponent } from './dynamic-options/dynamic-options.component';
 
 @Component({
   selector: 'app-field-settings',
-  imports: [MatFormFieldModule, MatInputModule, FormsModule, MatCheckbox, MatSelectModule],
+  imports: [
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatCheckbox,
+    MatSelectModule,
+    DynamicOptionsComponent,
+  ],
   template: `
     <div
       class="p-4 bg-white rounded-lg h-[calc(100vh-150px)] overflow-y-auto border-gray-200 shadow-sm"
@@ -50,6 +58,11 @@ import {MatSelectModule} from '@angular/material/select'
             }
           </mat-select>
         </mat-form-field>
+        } @case ('dynamic-options') {
+        <app-dynamic-options
+          [options]="fieldValues()[setting.key]"
+          (optionsChange)="updateField(selectedField.id, setting.key, $event)"
+        />
         } } }
       </div>
       }
@@ -74,5 +87,7 @@ export class FieldSettingsComponent {
     return field as any;
   });
 
-  updateField(fieldId: string, key: string, value: any) {}
+  updateField(fieldId: string, key: string, value: any) {
+    this.formService.updateField(fieldId, { [key]: value });
+  }
 }

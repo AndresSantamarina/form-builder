@@ -109,4 +109,13 @@ export class FormService {
   setSelectedField(fieldId: string) {
     this._selectedFieldId.set(fieldId);
   }
+
+  updateField(fieldId: string, data: Partial<FormField>) {
+    const rows = this._rows();
+    const newRows = rows.map((row) => ({
+      ...row,
+      fields: row.fields.map((f) => (f.id === fieldId ? { ...f, ...data } : f)),
+    }));
+    this._rows.set(newRows);
+  }
 }
