@@ -118,4 +118,28 @@ export class FormService {
     }));
     this._rows.set(newRows);
   }
+
+  moveRowUp(rowId: string) {
+    const rows = this._rows();
+    const index = rows.findIndex((r) => r.id === rowId);
+    if (index > 0) {
+      const newRows = [...rows];
+      const temp = newRows[index - 1];
+      newRows[index - 1] = newRows[index];
+      newRows[index] = temp;
+      this._rows.set(newRows);
+    }
+  }
+
+  moveRowDown(rowId: string) {
+    const rows = this._rows();
+    const index = rows.findIndex((r) => r.id === rowId);
+    if (index < rows.length - 1) {
+      const newRows = [...rows];
+      const temp = newRows[index + 1];
+      newRows[index + 1] = newRows[index];
+      newRows[index] = temp;
+      this._rows.set(newRows);
+    }
+  }
 }
