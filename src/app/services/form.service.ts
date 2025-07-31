@@ -33,6 +33,15 @@ export class FormService {
       return row;
     });
 
-    this._rows.set(newRows)
+    this._rows.set(newRows);
+  }
+
+  deleteField(fieldId: string) {
+    const rows = this._rows();
+    const newRows = rows.map((row) => ({
+      ...row,
+      fields: row.fields.filter((f) => f.id !== fieldId),
+    }));
+    this._rows.set(newRows);
   }
 }
