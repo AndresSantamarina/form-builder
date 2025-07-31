@@ -24,7 +24,7 @@ import { FormsModule } from '@angular/forms';
         </button>
       </div>
       <div class="flex flex-col gap-2 mb-4 mt-2">
-        @for (option of options(); track option.value; let i = $index) {
+        @for (option of options(); track i; let i = $index) {
         <div class="flex items-center">
           <mat-form-field appearance="fill" class="flex-1 compact">
             <input
@@ -49,12 +49,26 @@ export class DynamicOptionsComponent {
 
   addOption() {
     const currentOptions = this.options();
-    const newOptions = [...currentOptions];
-    newOptions.push({
-      label: `Option ${newOptions.length + 1}`,
-      value: `option-${newOptions.length + 1}`,
-    });
-    this.optionsChange.emit(newOptions);
+    const usedNumbers = currentOptions
+      .map((opt) => parseInt(opt.value?.split('-')[1] || '0'))
+      .filter((n) => !isNaN(n));
+
+    const nextNumber = this.getNextAvailableNumber(usedNumbers);
+
+    const newOption: OptionItem = {
+      label: `Option ${nextNumber}`,
+      value: `option-${nextNumber}`,
+    };
+
+    this.optionsChange.emit([...currentOptions, newOption]);
+  }
+
+  private getNextAvailableNumber(used: number[]): number {
+    let n = 1;
+    while (used.includes(n)) {
+      n++;
+    }
+    return n;
   }
 
   removeOption(index: number) {
@@ -68,9 +82,16 @@ export class DynamicOptionsComponent {
     const currentOptions = this.options();
     const newOptions = [...currentOptions];
     newOptions[index] = {
-      ...newOptions[index],
       label: newLabel,
+      value: this.slugify(newLabel),
     };
     this.optionsChange.emit(newOptions);
+  }
+
+  private slugify(label: string): string {
+    return label
+      .toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[^a-z0-9\-]/g, '');
   }
 }

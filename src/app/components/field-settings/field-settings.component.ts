@@ -60,6 +60,7 @@ import { DynamicOptionsComponent } from './dynamic-options/dynamic-options.compo
         </mat-form-field>
         } @case ('dynamic-options') {
         <app-dynamic-options
+          [title]="setting.label"
           [options]="fieldValues()[setting.key]"
           (optionsChange)="updateField(selectedField.id, setting.key, $event)"
         />

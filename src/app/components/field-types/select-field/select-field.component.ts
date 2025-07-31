@@ -12,7 +12,7 @@ import { FormField } from '../../../models/field';
       <mat-select [required]="field().required">
         @if (field().options) { @for (option of field().options; track
         option.value) {
-        <mat-option [value]="option.value">{{ option.value }}</mat-option>
+        <mat-option [value]="option.value">{{ option.label }}</mat-option>
         } }@else {
         <mat-option value="option1">Option 1</mat-option>
         <mat-option value="option2">Option 2</mat-option>

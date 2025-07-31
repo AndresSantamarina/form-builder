@@ -95,6 +95,7 @@ export class FieldTypesService {
   fieldTypes = new Map<string, FieldTypeDefinition>([
     ['text', TEXT_FIELD_DEFINITION],
     ['checkbox', CHECKBOX_FIELD_DEFINITION],
+    ['select', SELECT_FIELD_DEFINITION],
   ]);
 
   getFieldType(type: string): FieldTypeDefinition | undefined {
