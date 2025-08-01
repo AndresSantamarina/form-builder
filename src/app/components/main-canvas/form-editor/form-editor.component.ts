@@ -17,6 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
         [cdkDropListData]="row.id"
         (cdkDropListDropped)="onDropInRow($event, row.id)"
         [cdkDropListOrientation]="'mixed'"
+        [style.view-transition-name]="'row-' + row.id"
         class="relative p-5 pt-2 ps-10 mb-4 bg-emerald-50 rounded-lg border-2 border-dashed border-gray-300"
       >
         <div class="flex justify-between items-center">
@@ -32,6 +33,8 @@ import { MatIconModule } from '@angular/material/icon';
             [cdkDragData]="field"
             class="flex-1"
             [field]="field"
+            [style.view-transition-name]="'field-' + field.id"
+            [style.view-transition-class]="'field-transition'"
           />
           }@empty {
           <div

@@ -2,7 +2,6 @@
 @use "@angular/material" as mat;
 @use "../src/app/themes/greentheme.css";
 
-
 html,
 body {
   height: 100%;
@@ -17,10 +16,7 @@ body {
   background-color: lightgray !important;
 }
 
-// mat-form-field{
-//   @include mat.theme(
-//     (
-//       density: -3,
-//     )
-//   );
-// }
+::view-transition-old(.field-transition),
+::view-transition-new(.field-transition) {
+  height: 100%;
+}
