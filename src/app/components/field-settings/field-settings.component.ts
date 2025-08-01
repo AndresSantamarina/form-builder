@@ -23,7 +23,9 @@ import { DynamicOptionsComponent } from './dynamic-options/dynamic-options.compo
       class="p-4 bg-white rounded-lg h-[calc(100vh-150px)] overflow-y-auto border-gray-200 shadow-sm"
     >
       @if (formService.selectedField(); as selectedField) {
-      <h3 class="text-xl font-medium mb-6 text-emerald-800">Field Properties</h3>
+      <h3 class="text-xl font-medium mb-6 text-emerald-800">
+        Field Properties
+      </h3>
       <div class="flex flex-col gap-6">
         @for (setting of fieldSettings(); track setting.key) { @switch
         (setting.type) { @case ('text') {
@@ -66,6 +68,10 @@ import { DynamicOptionsComponent } from './dynamic-options/dynamic-options.compo
         />
         } } }
       </div>
+      }@else {
+      <p class="text-gray-400 flex justify-center mt-20 text-sm">
+        Select a field to customize it
+      </p>
       }
     </div>
   `,
