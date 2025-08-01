@@ -41,6 +41,16 @@ const TEXT_FIELD_DEFINITION: FieldTypeDefinition = {
     },
   ],
   component: TextFieldComponent,
+  generateCode: (field) => `
+    <mat-form-field class="w-full">
+      <mat-label>${field.label}</mat-label>
+      <input
+        matInput
+        [type]="${field.inputType || 'text'}"
+        [required]="${field.required}"
+        [placeholder]="${field.placeholder || ''}"
+      />
+    </mat-form-field>`,
 };
 
 const CHECKBOX_FIELD_DEFINITION: FieldTypeDefinition = {
@@ -56,6 +66,11 @@ const CHECKBOX_FIELD_DEFINITION: FieldTypeDefinition = {
     { type: 'checkbox', key: 'required', label: 'Required' },
   ],
   component: CheckboxFieldComponent,
+  generateCode: (field) => `
+   <mat-checkbox [required]="${field.required}">
+      ${field.label}
+    </mat-checkbox>\n
+  `,
 };
 
 const SELECT_FIELD_DEFINITION: FieldTypeDefinition = {
@@ -86,6 +101,25 @@ const SELECT_FIELD_DEFINITION: FieldTypeDefinition = {
     { type: 'checkbox', key: 'required', label: 'Required' },
     { type: 'dynamic-options', key: 'options', label: 'Dropdown Options' },
   ],
+  generateCode: (field) => {
+    let code =
+      `       <mat-form-field appearance="fill" class="w-full">\n` +
+      `         <mat-label>${field.label}</mat-label>\n` +
+      `         <mat-select [required]="${field.required}">\n`;
+    if (field.options) {
+      field.options.forEach((option) => {
+        code += `       <mat-option value="${option.value}">${option.label}</mat-option>\n`;
+      });
+    } else {
+      code +=
+        `       <mat-option value="option1">Option 1</mat-option>\n` +
+        `       <mat-option value="option2">Option 2</mat-option>\n` +
+        `       <mat-option value="option3">Option 3</mat-option>\n`;
+    }
+
+    code += `        </mat-select>\n` + `      <mat/form-field>\n`;
+    return code;
+  },
 };
 
 @Injectable({
