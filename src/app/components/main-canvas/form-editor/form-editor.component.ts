@@ -17,10 +17,10 @@ import { MatIconModule } from '@angular/material/icon';
         [cdkDropListData]="row.id"
         (cdkDropListDropped)="onDropInRow($event, row.id)"
         [cdkDropListOrientation]="'mixed'"
-        class="relative p-5 pt-2 ps-10 mb-4 bg-white rounded-lg border-2 border-dashed border-gray-200"
+        class="relative p-5 pt-2 ps-10 mb-4 bg-emerald-50 rounded-lg border-2 border-dashed border-gray-300"
       >
         <div class="flex justify-between items-center">
-          <span>Row</span>
+          <span class="text-emerald-800">Row</span>
           <button mat-icon-button (click)="formService.deleteRow(row.id)">
             <mat-icon>close</mat-icon>
           </button>

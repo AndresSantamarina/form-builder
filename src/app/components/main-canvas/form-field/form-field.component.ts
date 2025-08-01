@@ -1,6 +1,5 @@
-import { Component, computed, inject, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { FormField } from '../../../models/field';
-import { FieldTypesService } from '../../../services/field-types.service';
 import { TitleCasePipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -17,7 +16,7 @@ import { FieldPreviewComponent } from '../field-preview/field-preview.component'
   ],
   template: `
     <div
-      class="bg-white p-4 pt-1 rounded-lg shadow-sm border border-gray-200 hover:border-black cursos-pointer"
+      class="bg-white p-4 pt-1 rounded-lg shadow-sm border border-gray-300 hover:border-emerald-700 cursos-pointer"
       [class]="formService.selectedField()?.id === field().id ? '!border-black' : ''"
       (click)="formService.setSelectedField(field().id)"
     >

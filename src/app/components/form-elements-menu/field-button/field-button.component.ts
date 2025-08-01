@@ -12,10 +12,10 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
       [cdkDragData]="field()"
       (cdkDragStarted)="whileDragging.set(true)"
       (cdkDragEnded)="whileDragging.set(false)"
-      class="w-full p-3 border border-gray-200 hover:border-black hover:shadow-md transition-shadow rounded-lg flex items-center gap-3 cursor-pointer"
+      class="w-full p-3 border border-gray-200 hover:border-emerald-700  hover:shadow-md transition-shadow rounded-lg flex items-center gap-3 cursor-pointer"
     >
-      <div class="rounded-md bg-gray-100 flex items-center justify-center p-1">
-        <mat-icon class="scale-75">{{ field().icon }}</mat-icon>
+      <div class="rounded-md bg-emerald-700  flex items-center justify-center p-1">
+        <mat-icon class="scale-75 !text-gray-300">{{ field().icon }}</mat-icon>
       </div>
       <span>
         {{ field().label }}
@@ -26,8 +26,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     <div
       class="w-full p-3 border border-gray-200 rounded-lg flex items-center gap-3"
     >
-      <div class="rounded-md bg-blue-100 flex items-center justify-center p-1">
-        <mat-icon class="scale-75">{{ field().icon }}</mat-icon>
+      <div class="rounded-md bg-emerald-800 flex items-center justify-center p-1">
+        <mat-icon class="scale-75 !text-emerald-200">{{ field().icon }}</mat-icon>
       </div>
       <span>
         {{ field().label }}

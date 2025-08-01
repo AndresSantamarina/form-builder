@@ -18,9 +18,9 @@ import { FormService } from './services/form.service';
     MatIconModule,
   ],
   template: `
-    <div class="flex flex-col h-screen bg-gray-100 px-4">
+    <div class="flex flex-col h-screen bg-emerald-50 px-4">
       <div class="flex flex-col gap-1 items-center justify-center py-10">
-        <h1 class="text-2xl tracking-wide font-medium">
+        <h1 class="text-2xl text-emerald-800 tracking-wide font-medium">
           Angular Forms Designer
         </h1>
         <p class="text-gray-500">

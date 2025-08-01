@@ -1,14 +1,7 @@
 @use "tailwindcss";
 @use "@angular/material" as mat;
+@use "../src/app/themes/greentheme.css";
 
-html {
-  @include mat.theme(
-    (
-      color: mat.$azure-palette,
-      typography: Roboto,
-    )
-  );
-}
 
 html,
 body {
@@ -19,7 +12,15 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.cdk-drop-list-dragging:not(.elements-menu){
+.cdk-drop-list-dragging:not(.elements-menu) {
   border: 2px solid lightgray !important;
   background-color: lightgray !important;
 }
+
+// mat-form-field{
+//   @include mat.theme(
+//     (
+//       density: -3,
+//     )
+//   );
+// }
